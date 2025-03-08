@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web实验一</title>
+       
+<body>
+    <!-- 标题字 -->
+    <h1>青春不常在，抓紧谈恋爱</h1><br>
+
+    <table>
+        <thead>
+        <!-- 性别 -->
+           <tr>        
+           <td><label>性别:</label></td>
+                <td>
+                <input type="radio" name="gender" value="nan"> 
+                <label for="nan"><img src="./man.jpg" alt="">男</label>
+                <input type="radio" name="gender" value="nv">  
+                <label for="nv"><img src="./man.jpg" alt="">女</label>
+                </td>
+           </tr>
+           <!-- 生日 -->
+            <tr>
+            <td ><label>生日:</label></td> 
+             <td>
+                <select id="year"><option>--请选择年份--</option></select>
+                <select id="month"><option>--请选择月份--</option></select>
+                <select id="day"><option>--请选择日期--</option></select>
+            </td>
+            </tr>
+        <!-- 所在地区 -->
+         <tr>
+            <td ><label>所在地区</label></td>
+            <td>
+              <input type="text" value="北京思密达">
+            </td>
+         </tr>
+
+         <!-- 婚姻状况 -->
+          <tr>
+          <td ><label>婚姻状况：</label></td>
+          <td>
+            <input type="radio" name="gender" value="marriage1"> 未婚  
+            <input type="radio" name="gender" value="marriage2"> 已婚  
+            <input type="radio" name="gender" value="marriage"> 离异
+          </td>
+          </tr>
+
+          <!-- 学历选择-->
+           <tr>
+            <td><label>学历：</label></td>
+            <td>
+                <select name="school">
+                    <option value="">小学</option>
+                    <option value="">初中</option>
+                    <option value="">高中</option>
+                    <option value="">专科</option>
+                    <option value="">本科</option>
+                    <option value="">硕士</option>
+                    <option value="">博士</option>
+                    <option value=""disabled selected hidden>--请选择学历--</option>
+                </select>
+            </td>
+           </tr>
+        
+           <!-- 喜欢类型 -->
+         <tr>
+            <td><label>喜欢的类型：</label></td>
+            <td>
+                <label><input type="checkbox" name="wmd"> 妩媚的</label>
+                <label><input type="checkbox" name="lad"> 可爱的</label>
+                <label><input type="checkbox" name="xxr"> 小鲜肉</label>
+                <label><input type="checkbox" name="llr"> 老腊肉</label>
+                <label><input type="checkbox" name="alllike"> 都喜欢</label>
+            </td>
+         </tr>
+
+         <!-- 个人介绍 -->
+             <tr>
+                <td><label >个人介绍:</label></td>
+                   <td>
+                    <textarea placeholder="个人简介   23215220133-陈凯"></textarea>
+                </td>
+             </tr>
+
+         <!-- 注册按钮 -->
+         <tr>
+           <!--第一列为空-->
+            <td></td>
+            <td>
+                <button style="margin-left: 0;">免费注册</button><br>
+                <label><input type="checkbox" name="xz"> 我同意注册条款和会员加入标准</label><br>
+                <a href=https://www.12306.cn/index/index.html target="_blank">我是会员，立即登录</a>
+                <p>我承诺</p>
+
+                <ul>
+                    <li>年满18岁、单身</li>
+                    <li>抱着严肃的态度</li>
+                    <li>真诚寻找另一半</li>
+                </ul>
+        </td>
+        </tr>
+        
+
+
+         </thead>
+        </thead>
+    <table>
+    
+</body>
+<!-- 头标题字体 -->
+<style>
+    h1 {
+        font-size: 18px; 
+        font-weight: bold; 
+        text-align: left; 
+    }
+   </style> 
+<!--实现出生日期的具体  -->
+<script> 
+    window.onload = function() {
+        let yearSelect = document.getElementById("year");
+        let monthSelect = document.getElementById("month");
+        let daySelect = document.getElementById("day");
+
+        // 生成年份（从1970到当前年份）
+        for (let i = 1970; i <= new Date().getFullYear(); i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            yearSelect.appendChild(option);
+        }
+
+        // 生成月份（1-12）
+        for (let i = 1; i <= 12; i++) {
+            let option = document.createElement("option");
+            option.value = i;
+            option.textContent = i;
+            monthSelect.appendChild(option);
+        }
+
+        // 更新日期
+        function updateDays() {
+            let year = parseInt(yearSelect.value) || new Date().getFullYear();
+            let month = parseInt(monthSelect.value) || 1;
+            let daysInMonth = new Date(year, month, 0).getDate();
+
+            // 清空之前的日期，防止日期重复选择
+            daySelect.innerHTML = '<option>--请选择日期--</option>';
+            for (let i = 1; i <= daysInMonth; i++) {
+                let option = document.createElement("option");
+                option.value = i;
+                option.textContent = i;
+                daySelect.appendChild(option);
+            }
+        }
+
+        //监听年份和月份变化
+        yearSelect.addEventListener("change", updateDays);
+        monthSelect.addEventListener("change", updateDays);
+    }
+</script>
+
+</html>
